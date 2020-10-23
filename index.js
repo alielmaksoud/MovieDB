@@ -177,4 +177,34 @@ app.get('/movies/add', (req, res) => {
                 }
             });
 
-  
+app.get('/movies/update/:id', (req, res) => {
+          const id = req.params.id;
+          const newTitle = req.query.title;
+          const newRating = req.query.rating;
+            
+            
+              if(!movies[id]){
+                const response = {
+                  status:404, error:true, message: "the movie " + id + " does not exist"};
+      
+      
+                  res.status(404);
+                  res.send(response);
+                }
+                else if ((newTitle==""||newTitle==undefined)&&(newRating==""||newRating==undefined)){
+                  res.status(200).send({data:movies});
+                }
+                else if(newTitle==""||newTitle==undefined){
+                    movies[id].rating=newRating;
+                    res.status(200).send({data:movies});
+                  }
+                  else if(newRating==""||newRating==undefined){
+                    movies[id].title=newTitle;
+                    res.status(200).send({data:movies});
+                  }else{
+                    movies[id].title=newTitle;
+                    movies[id].rating=newRating;
+                    res.status(200).send({data:movies});
+                  }
+            });
+
