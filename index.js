@@ -158,5 +158,23 @@ app.get('/movies/add', (req, res) => {
                 }
                 
               });
+      
+ app.get('/movies/delete/:id', (req, res) => {
+            const id = req.params.id;
+                if ( id  >= movies.legnth || id < 0) {
+                
+                    const response = {
+                        status:404, error:true, message: "the movie " + id + " does not exist"};
+            
+            
+                    res.status(404);
+                    res.send(response);
+                }
+                else {
+                    movies.splice(id, 1);
+                    const response = {movies};
+                    res.send(response);
+                }
+            });
 
   
