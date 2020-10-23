@@ -115,3 +115,19 @@ app.get('/movies/delete', (req, res) => {
                 });
 
 
+app.get('/movies/:title', (req, res) => {
+                  
+          const title = req.params.title;
+        for (let movie of movies) {
+                      if (movie.title === title) {
+                          res.json(movie);
+                          return;
+                      }
+                  }
+                  const response = {
+                    status:404, error:true, message: "the movie " + title + " does not exist"};
+        
+        
+                res.status(404);
+                res.send(response);
+              });
