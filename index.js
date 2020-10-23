@@ -78,10 +78,40 @@ app.get('/movies/create', (req, res) => {
                res.send(response);
                });
   
-  app.get('/movies/delete', (req, res) => {
+app.get('/movies/delete', (req, res) => {
                const response = { 
                status:200, message:'delete'}
               res.send(response);
                });
+
+               app.get("/movies/by-date", (req, res) => {
+    
+                const response = { 
+                   status:200, data: movies.sort(function(a, b){
+                       return a.year - b.year;
+                      })}
+      
+                  res.send(response);
+              });
+                
+  app.get("/movies/by-rating", (req, res) => {
+          
+                  const response = { 
+                     status:200, data: movies.sort(function(a, b){
+                         return a.rating - b.rating;
+                        })}
+        
+                    res.send(response);
+                }); 
+                
+  app.get("/movies/by-title", (req, res) => {
+          
+                  const response = { 
+                     status:200, data: movies.sort(function(a, b){
+                         return a - b;
+                        })}
+        
+                    res.send(response);
+                });
 
 
