@@ -54,7 +54,7 @@ app.get('/search',(req,res) => {
                 }
             });
 
-app.get('/movies/create', (req, res) => {
+app.post('/movies/create', (req, res) => {
               const response = { 
               status:200, message:'create'}
               res.send(response);
@@ -66,19 +66,19 @@ app.get('/movies/create', (req, res) => {
                   { title: 'Brazil', year: 1985, rating: 8 },
                   { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
                  ]
-  app.get('/movies/read', (req, res) => {
+app.get('/movies/read', (req, res) => {
               const response = { 
               status:200, data: movies}
              res.send(response);
               });
   
-  app.get('/movies/update', (req, res) => {
+  app.put('/movies/update', (req, res) => {
                const response = { 
                status:200, message:'updates'}
                res.send(response);
                });
   
-app.get('/movies/delete', (req, res) => {
+app.delete('/movies/delete', (req, res) => {
                const response = { 
                status:200, message:'delete'}
               res.send(response);
@@ -133,7 +133,7 @@ app.get('/movies/:title', (req, res) => {
               });
   
 
-app.get('/movies/add', (req, res) => {
+app.post('/movies/add', (req, res) => {
           const newTitle=req.query.title;
           const newYear= req.query.year;
           const newRating=req.query.rating;
@@ -159,7 +159,7 @@ app.get('/movies/add', (req, res) => {
                 
               });
       
- app.get('/movies/delete/:id', (req, res) => {
+ app.delete('/movies/delete/:id', (req, res) => {
             const id = req.params.id;
                 if ( id  >= movies.legnth || id < 0) {
                 
@@ -177,7 +177,7 @@ app.get('/movies/add', (req, res) => {
                 }
             });
 
-app.get('/movies/update/:id', (req, res) => {
+app.put('/movies/update/:id', (req, res) => {
           const id = req.params.id;
           const newTitle = req.query.title;
           const newRating = req.query.rating;
@@ -208,3 +208,4 @@ app.get('/movies/update/:id', (req, res) => {
                   }
             });
 
+            
