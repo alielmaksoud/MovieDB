@@ -24,3 +24,33 @@ app.get('/time',(req,res) => {
                status:200, message: x.getHours() + ":" + x.getSeconds()}
            res.send(response);
        });
+
+
+
+app.get('/hello/:id', (req, res) => {
+        const response = { 
+            status:200, message:'Hello,'+ " "+ req.params.id}
+            res.send(response);
+        });
+
+        
+app.get('/search',(req,res) => {
+            const search = req.query.s;
+            
+                if (typeof search != 'undefined') {
+                
+                    const response = {
+                        status:200, message:"ok", data: search};
+            
+                    res.send(response);
+                }
+                else {
+                    const response = {
+                        status:500, error:true, message: "you have to provide a search"};
+            
+            
+                    res.status(500);
+                    res.send(response);
+                }
+            });
+
