@@ -1,6 +1,45 @@
 const express = require('express');
 const port = 3000;
 const app = express();
+const MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb+srv://database:alovich@cluster0.givva.mongodb.net/moviesdb?retryWrites=true&w=majority', { useUnifiedTopology: true })
+  .then(client => {
+    console.log('Connected to Database')
+    const db = client.db('moviesdb')
+
+  })
+  .catch(error => console.error(error));
+
+
+  MongoClient.connect(/* ... */)
+  .then(client => {
+    // ...
+    const db = client.db('moviesdb')
+    app.use(/* ... */)
+    app.get(/* ... */)
+    app.post(/* ... */)
+    app.listen(/* ... */)
+  })
+  .catch(console.error)
+
+  MongoClient.connect(/* ... */)
+  .then(client => {
+    // ...
+    const db = client.db('moviesdb')
+    const quotesCollection = db.collection('index.js')
+
+    // ...
+  })
+
+  app.post('/quotes', (req, res) => {
+    quotesCollection.insertOne(req.body)
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => console.error(error))
+  })
+  
 
 app.listen(port, function () {
     console.log("Server is running on "+ port +" port");
@@ -208,4 +247,3 @@ app.put('/movies/update/:id', (req, res) => {
                   }
             });
 
-            
