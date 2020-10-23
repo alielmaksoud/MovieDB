@@ -131,3 +131,32 @@ app.get('/movies/:title', (req, res) => {
                 res.status(404);
                 res.send(response);
               });
+  
+
+app.get('/movies/add', (req, res) => {
+          const newTitle=req.query.title;
+          const newYear= req.query.year;
+          const newRating=req.query.rating;
+          const allMovies={data:movies};
+                if(newTitle==""||newTitle=="undefined"||  
+                   newYear==""||newYear=="undefined"||    
+                   newYear<1000||newYear>9999||(!newYear)){ 
+
+                    const response = {
+                      status:403, error:true, message:"you cannot create a movie without providing a title and a year"}
+                  res.status(403);
+                  res.send(response);
+                }
+                else if(newRating==""||newRating=="undefined"){
+                 
+                 movies.push({title:newTitle,year:newYear,rating:4})
+                 res.status(200).send(allMovies);
+                }
+                else{
+                movies.push({title:newTitle,year:newYear,rating:newRating})
+                  res.status(200).send(allMovies);
+                }
+                
+              });
+
+  
